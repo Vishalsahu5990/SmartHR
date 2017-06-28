@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	x:Class="BarikITApp.TestPage">
+
+	<StackLayout VerticalOptions="Start">
+
+
+	<!--Test view-->
+		<StackLayout HeightRequest="100" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+			 BackgroundColor="Red">
+			<BoxView HeightRequest="1" BackgroundColor="Silver"/>
+
+			<StackLayout Orientation="Horizontal"
+				HorizontalOptions="FillAndExpand" 
+				VerticalOptions="FillAndExpand"
+				Spacing="0">
+			<BoxView WidthRequest="1" BackgroundColor="Silver"/>
+
+<!--			content	-->
+				<Image  
+					Source="edit_btn"
+					Grid.Row="0"
+					Grid.Column="0"
+				    HeightRequest="10"
+				WidthRequest="10"
+				VerticalOptions="Center"
+				Margin="5,0,5,0"/>
+				<BoxView WidthRequest="1" BackgroundColor="Silver"/>
+				<Label 
+				Text="96"
+				FontSize="10"
+				VerticalOptions="CenterAndExpand"
+				Margin="5,0,5,0"
+				WidthRequest="15"/>
+				<BoxView WidthRequest="1" BackgroundColor="Silver"/>
+				<StackLayout HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					WidthRequest="50">
+				<Label Text="Corporate Head office"
+				FontSize="10"
+				VerticalOptions="CenterAndExpand"
+					HorizontalOptions="CenterAndExpand"
+						HorizontalTextAlignment="Center"
+					Margin="2,0,2,0"/>
+					<BoxView HeightRequest="1" BackgroundColor="Silver"/>
+					<StackLayout HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					WidthRequest="50">
+						<Label Text="Name"
+				FontSize="10"
+				VerticalOptions="CenterAndExpand"
+					HorizontalOptions="CenterAndExpand"
+					Margin="2,0,2,0"
+					HorizontalTextAlignment="Center"/>
+					</StackLayout>
+
+					</StackLayout>
+				<BoxView WidthRequest="1" BackgroundColor="Silver"/>
+				<StackLayout Spacing="0">
+
+
+
+
+<!--			Third block		-->
+				<StackLayout HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					WidthRequest="50"
+						Orientation="Horizontal">
+										
+						<Label Text="5/13/2013 000000"
+							HorizontalTextAlignment="Center"
+				FontSize="10"
+				VerticalOptions="CenterAndExpand"
+					HorizontalOptions="CenterAndExpand"
+						Margin="2,0,2,0"
+						/>
+						<BoxView HorizontalOptions="EndAndExpand" WidthRequest="1" BackgroundColor="Silver"/>
+		
+						<Label Text="{Binding CurrentStatus}"
+				FontSize="10"
+				VerticalOptions="CenterAndExpand"
+					HorizontalOptions="CenterAndExpand"
+							HorizontalTextAlignment="Center"
+						Margin="2,0,2,0"
+						/>
+					</StackLayout>
+					<BoxView HeightRequest="1" BackgroundColor="Silver"/>
+					<StackLayout HeightRequest="39.5">
+					<ProgressBar 
+							VerticalOptions="CenterAndExpand"
+
+					Margin="5,0,5,0"
+						Progress="{Binding Progress}"/>
+
+					</StackLayout>
+
+
+				</StackLayout>
+
+
+				<BoxView WidthRequest="1"  BackgroundColor="Silver"/>
+				<StackLayout HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					>
+				<Label Text=" new yourk site chcklist" 
+						HorizontalTextAlignment="Center"
+				FontSize="10"
+						WidthRequest="50"
+				VerticalOptions="CenterAndExpand"
+					HorizontalOptions="CenterAndExpand"
+					Margin="2,0,2,0"
+					HeightRequest="53"/>
+					<BoxView HeightRequest="1"
+					BackgroundColor="Silver"
+					HorizontalOptions="FillAndExpand"/>
+						<Label Text="Test@test.com"
+				FontSize="10"
+				VerticalOptions="CenterAndExpand"
+					HorizontalOptions="CenterAndExpand"
+					Margin="2,0,2,0"
+					HeightRequest="50"
+					VerticalTextAlignment="Center"/>
+					</StackLayout>
+				
+				
+				<BoxView HorizontalOptions="EndAndExpand" WidthRequest="1" BackgroundColor="Silver"/>
+			</StackLayout>
+			<BoxView HeightRequest="1" BackgroundColor="Silver"/>
+		</StackLayout>
+
+
+		</StackLayout>
+
+</ContentPage>

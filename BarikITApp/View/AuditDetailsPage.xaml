@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	x:Class="BarikITApp.AuditDetailsPage"
+	Padding="16"
+	BackgroundColor="#F6F6F6">
+	<ScrollView>
+	<StackLayout BackgroundColor="#F6F6F6" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+	<Grid HorizontalOptions="FillAndExpand" RowSpacing="30">
+	<Label Text="Location:" 
+			Grid.Row="0"
+			Grid.Column="0"
+			FontSize="Small"
+			/>
+			<Label Text="" 
+			Grid.Row="0"
+			Grid.Column="1"
+			FontSize="Small"
+				x:Name="lblLocationName"/>
+
+
+			<Label Text="Record No:" 
+			Grid.Row="1"
+			Grid.Column="0"
+			FontSize="Small"
+			/>
+			<Label Text="" 
+			Grid.Row="1"
+			Grid.Column="1"
+			FontSize="Small"
+				x:Name="lblRecordNo"/>
+
+			<Label Text="Name:" 
+			Grid.Row="2"
+			Grid.Column="0"
+			FontSize="Small"
+			/>
+			<Label Text="" 
+			Grid.Row="2"
+			Grid.Column="1"
+			FontSize="Small"
+				x:Name="lblName"/>
+
+			<Label Text="*Schedule Date:" 
+			Grid.Row="3"
+			Grid.Column="0"
+			FontSize="Small"
+			/>
+			<Label Text="" 
+			Grid.Row="3"
+			Grid.Column="1"
+			FontSize="Small"
+				x:Name="lblScheduleDate"/>
+
+			<Label Text="Person Responsible:" 
+			Grid.Row="4"
+			Grid.Column="0"
+			FontSize="Small"
+			/>
+			<Label Text="" 
+			Grid.Row="4"
+			Grid.Column="1"
+			FontSize="Small"
+				x:Name="lblPersonResponsible"/>
+
+				<Label Text="Action Owner:" 
+			Grid.Row="5"
+			Grid.Column="0"
+			FontSize="Small"
+			/>
+			<Label Text="" 
+			Grid.Row="5"
+			Grid.Column="1"
+			FontSize="Small"
+				x:Name="lblActionOwner"/>
+
+				<Label Text="Max Point:" 
+			Grid.Row="6"
+			Grid.Column="0"
+			FontSize="Small"
+			/>
+			<Label Text="" 
+			Grid.Row="6"
+			Grid.Column="1"
+			FontSize="Small"
+				x:Name="lblMaxPoint"/>
+
+				<Label Text="Points Awarded:" 
+			Grid.Row="7"
+			Grid.Column="0"
+			FontSize="Small"
+			/>
+			<Label Text="" 
+			Grid.Row="7"
+			Grid.Column="1"
+			FontSize="Small"
+				x:Name="lblPointsAwarded"/>
+
+				<Label Text="Score:" 
+			Grid.Row="8"
+			Grid.Column="0"
+			FontSize="Small"
+			/>
+			<Label Text="0%" 
+			Grid.Row="8"
+			Grid.Column="1"
+			FontSize="Small"
+			x:Name="lblScore"/>
+		</Grid>
+	</StackLayout>
+		</ScrollView>
+</ContentPage>
