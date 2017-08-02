@@ -13,7 +13,8 @@ namespace BarikITApp.iOS
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
 			global::Xamarin.Forms.Forms.Init();
-
+			App.ScreenHeight = (double)UIScreen.MainScreen.Bounds.Height;
+			App.ScreenWidth = (double)UIScreen.MainScreen.Bounds.Width;
 			LoadApplication(new App());
 
 			return base.FinishedLaunching(app, options);

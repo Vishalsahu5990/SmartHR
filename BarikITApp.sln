@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarikITApp", "BarikITApp\Ba
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarikITApp.iOS", "iOS\BarikITApp.iOS.csproj", "{1948BF6E-A7BF-4315-9A45-73DB586786C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarikITApp.Droid", "Droid\BarikITApp.Droid.csproj", "{FA8E0996-0D14-4748-A080-8839F6DE4BF9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHR.Droid", "Droid\SmartHR.Droid.csproj", "{FA8E0996-0D14-4748-A080-8839F6DE4BF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

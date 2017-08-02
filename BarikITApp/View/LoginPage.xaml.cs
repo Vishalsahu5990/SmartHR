@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Plugin.Connectivity;
+using Plugin.SecureStorage;
 using Xamarin.Forms;
 
 namespace BarikITApp
@@ -41,41 +43,83 @@ namespace BarikITApp
 
 		void BtnLogin_Clicked(object sender, EventArgs e)
 		{
-			App.Current.MainPage = new NavigationPage(new HomePage());
-			//if (Isvalidated())
-			//{
-			//	SignIn();
-			//}
-		}
-private async Task SignIn()
-{
-	StaticMethods.ShowLoader();
-	Task.Factory.StartNew(
-			// tasks allow you to use the lambda syntax to pass wor
-			() =>
+			if (StaticMethods.IsConnectedToInternet())
 			{
-				um = new UserModel();
-				um = WebService.LogIn(txtEmail.Text, txtPassword.Text,"");
+				if (Isvalidated())
+				{
+					GetLoginToken();
+				}
+			}
 
 
-			}).ContinueWith(async
+		}
+		private async Task GetLoginToken()
+		{
+			StaticMethods.ShowLoader();
+			UserModel um = null;
+			Task.Factory.StartNew(
+					// tasks allow you to use the lambda syntax to pass wor
+					() =>
+					{
+
+						um = WebService.GetLoginToken(txtEmail.Text, txtPassword.Text);
+
+
+					}).ContinueWith(async
 		t =>
-{
-				if (!string.IsNullOrEmpty(um.userName))
-	{
-					StaticDataModel.UserId = um.userName;
-		App.Current.MainPage = new NavigationPage(new HomePage());
+		{
+			Device.BeginInvokeOnMainThread(async () =>
+				{
 
-	}
-	else
-	{
-		StaticMethods.ShowToast("Authentication failed!");
-	}
+					if (um != null)
+					{
+						StaticDataModel.AccessToken = um.access_token;
+						SignIn(um.access_token).Wait();
 
-	StaticMethods.DismissLoader();
 
-}, TaskScheduler.FromCurrentSynchronizationContext()
-		);
+
+					}
+					else
+					{
+						StaticMethods.ShowToast("Authentication failed!");
+					}
+
+
+				});
+
+		}, TaskScheduler.FromCurrentSynchronizationContext()
+				);
+		}
+		private async Task SignIn(string token)
+		{
+			StaticMethods.ShowLoader();
+			Task.Factory.StartNew(
+					// tasks allow you to use the lambda syntax to pass wor
+					() =>
+					{
+						um = new UserModel();
+				um = WebService.LogIn(txtEmail.Text, txtPassword.Text, token);
+
+
+					}).ContinueWith(async
+		t =>
+		{
+			if (!string.IsNullOrEmpty(um.userName))
+			{
+				StaticDataModel.UserId = um.userName;
+					CrossSecureStorage.Current.SetValue("UserId", StaticDataModel.UserId);
+				App.Current.MainPage = new NavigationPage(new HomePage());
+
+			}
+			else
+			{
+				StaticMethods.ShowToast("Authentication failed!");
+			}
+
+			StaticMethods.DismissLoader();
+
+		}, TaskScheduler.FromCurrentSynchronizationContext()
+				);
 		}
 		private bool Isvalidated()
 		{

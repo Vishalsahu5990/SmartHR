@@ -5,6 +5,8 @@ using BarikITApp;
 using BarikITApp.Droid;
 using Java.Lang;
 using Xamarin.Forms;
+using Android.Graphics;
+using System.IO;
 
 [assembly: Dependency(typeof(AndroidMethods))]
 namespace BarikITApp.Droid
@@ -39,9 +41,21 @@ namespace BarikITApp.Droid
 
 		}
 		public string GetUniqueDeviceId()
-		{ 
+		{
 			return Android.Provider.Settings.Secure.GetString(Forms.Context.ContentResolver, Android.Provider.Settings.Secure.AndroidId);
 
+		}
+		public byte[] ResizeImageAndroid(byte[] imageData, float width, float height)
+		{
+			// Load the bitmap
+			Bitmap originalImage = BitmapFactory.DecodeByteArray(imageData, 0, imageData.Length);
+			Bitmap resizedImage = Bitmap.CreateScaledBitmap(originalImage, (int)width, (int)height, false);
+
+			using (MemoryStream ms = new MemoryStream())
+			{
+				resizedImage.Compress(Bitmap.CompressFormat.Jpeg, 100, ms);
+				return ms.ToArray();
+			}
 		}
 	}
 }

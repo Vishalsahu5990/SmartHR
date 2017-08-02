@@ -9,10 +9,11 @@ using Android.Widget;
 using Android.OS;
 using Acr.UserDialogs;
 using Xamarin.Forms;
+using Plugin.SecureStorage;
 
 namespace BarikITApp.Droid
 {
-	[Activity(Label = "BarikITApp.Droid", Icon = "@drawable/icon", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+	[Activity(Label = "SmartHR", Icon = "@drawable/logo", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
 		protected override void OnCreate(Bundle bundle)
@@ -26,6 +27,7 @@ namespace BarikITApp.Droid
 
 			//loader initialization
 			UserDialogs.Init(() => (Activity)Forms.Context);
+			SecureStorageImplementation.StoragePassword = "SmartHr@123";
 			LoadApplication(new App());
 		}
 	}

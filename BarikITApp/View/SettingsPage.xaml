@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="BarikITApp.SettingsPage">
+	<StackLayout>
+	<StackLayout Spacing="0" HeightRequest="60" BackgroundColor="#062653" Orientation="Horizontal">
+	<StackLayout Padding="20,20,0,0">
+				<StackLayout.GestureRecognizers>
+        <TapGestureRecognizer Tapped="backTapped"/>
+    </StackLayout.GestureRecognizers>
+				<Image Source="back"/>
+			</StackLayout>
+
+	<Label Text="Settings" FontSize="Large"
+			HorizontalOptions="Start"
+				Margin="20,0,0,0"
+			VerticalOptions="CenterAndExpand"
+			TextColor="White"
+			/>
+		</StackLayout>
+
+			
+			
+
+	<StackLayout Padding="16" Spacing="15" 
+				VerticalOptions="CenterAndExpand"
+				>
+		
+
+		<StackLayout Orientation="Vertical"
+			HorizontalOptions="FillAndExpand"
+			Margin="0,20,0,0"
+			VerticalOptions="CenterAndExpand"
+					>
+			<Button Text="Upload automatically when connected to internet"
+				BackgroundColor="Silver"
+				TextColor="White"
+						FontSize="Small"
+				HorizontalOptions="FillAndExpand"
+					x:Name="btnUploadAuto"
+			/>
+			<Button Text="Upload Manually"
+				BackgroundColor="#1390F0"
+				TextColor="White"
+				HorizontalOptions="FillAndExpand"
+				FontSize="Small"
+				x:Name="btnUploadManually"/>
+			</StackLayout>
+			
+	</StackLayout>
+		<Label Text="Copyright @ 2017" 
+				HorizontalTextAlignment="Center"
+			FontSize="9"
+			TextColor="#1390F0"
+			VerticalOptions="EndAndExpand"/>
+<Label Text="Smart City Systems All rights reserved."
+			HorizontalTextAlignment="Center"
+			FontSize="9"
+		Margin="0,0,0,10"/>
+
+		</StackLayout>		
+		
+
+</ContentPage>  

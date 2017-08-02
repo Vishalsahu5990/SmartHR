@@ -5,5 +5,6 @@ namespace BarikITApp
 	{
 string MD5Conversion(string text);
 string GetUniqueDeviceId();
+		byte[] ResizeImageAndroid(byte[] imageData, float width, float height);
 	}
 }
