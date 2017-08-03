@@ -62,6 +62,10 @@ empList = await es.GetEmployees();
 					StaticMethods.ShowToast("No pending attendance available!");
 				}
 			}
+			else
+			{
+				StaticMethods.ShowToast("No pending attendance available!");
+			}
 
 
 		}

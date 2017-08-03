@@ -127,6 +127,7 @@ namespace BarikITApp
 				}
 				else
 				{
+                    clicked = false;
 					StaticMethods.ShowToast("Please upload picture.");
 				}
 

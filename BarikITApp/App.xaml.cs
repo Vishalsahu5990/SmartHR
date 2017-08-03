@@ -1,7 +1,7 @@
 ﻿using System;
 using Plugin.Connectivity;
 using Plugin.Geolocator;
-using Plugin.Geolocator.Abstractions;
+using Plugin.Geolocator.Abstractions; 
 using Plugin.SecureStorage;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -9,7 +9,7 @@ using Xamarin.Forms.Xaml;
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace BarikITApp
 {
-	public partial class App : Application
+	public partial class App : Application 
 	{
 		public static double ScreenHeight;
 		public static double ScreenWidth;
