@@ -8,27 +8,43 @@ using Xamarin.Forms;
 
 namespace BarikITApp
 {
-	public class EventService
-	{
-private static readonly AsyncLock Locker = new AsyncLock();
+    public class EventService
+    {
+        private static readonly AsyncLock Locker = new AsyncLock();
 
-private SQLiteAsyncConnection Database { get; } = DependencyService.Get<ISQLite>().GetAsyncConnection();
+        private SQLiteAsyncConnection Database { get; } = DependencyService.Get<ISQLite>().GetAsyncConnection();
 
-		public async Task AddEvents(List<tblEvent> movies)
-{
-	using (await Locker.LockAsync())
-	{
-		await Database.InsertAllAsync(movies);
-	}
-}
+        public async Task AddEvents(List<tblEvent> movies)
+        {
+            using (await Locker.LockAsync())
+            {
+                await Database.InsertAllAsync(movies);
+            }
+        }
 
-public async Task<List<tblEvent>> GetEvents()
-{
-	using (await Locker.LockAsync())
-	{
-		return await Database.Table<tblEvent>().Where(x => x.Id > 0).ToListAsync();
-	}
-}
+        public async Task<List<tblEvent>> GetEvents()
+        {
+            using (await Locker.LockAsync())
+            {
+                return await Database.Table<tblEvent>().Where(x => x.Id > 0).ToListAsync();
+            }
+        }
+        public async Task DeleteEvents(tblEvent evnt)
+		{
+			try
+			{
+				using (await Locker.LockAsync())
+				{
 
-	}
+					//var entity = await Database.FindAsync<tblEmployee>(id);
+
+					var res = await Database.DeleteAsync(evnt);
+				}
+			}
+			catch (Exception ex)
+			{
+
+			}
+		}
+    }
 }

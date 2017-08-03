@@ -8,27 +8,43 @@ using Xamarin.Forms;
 
 namespace BarikITApp
 {
-	public class JobService
-	{
-private static readonly AsyncLock Locker = new AsyncLock();
+    public class JobService
+    {
+        private static readonly AsyncLock Locker = new AsyncLock();
 
-private SQLiteAsyncConnection Database { get; } = DependencyService.Get<ISQLite>().GetAsyncConnection();
+        private SQLiteAsyncConnection Database { get; } = DependencyService.Get<ISQLite>().GetAsyncConnection();
 
-public async Task AddJobs(List<tblJob> movies)
-{
-	using (await Locker.LockAsync())
-	{
-		await Database.InsertAllAsync(movies);
-	}
-}
+        public async Task AddJobs(List<tblJob> movies)
+        {
+            using (await Locker.LockAsync())
+            {
+                await Database.InsertAllAsync(movies);
+            }
+        }
 
-public async Task<List<tblJob>> GetJobs()
-{
-	using (await Locker.LockAsync())
-	{
-		return await Database.Table<tblJob>().Where(x => x.Id > 0).ToListAsync();
-	}
-}
+        public async Task<List<tblJob>> GetJobs()
+        {
+            using (await Locker.LockAsync())
+            {
+                return await Database.Table<tblJob>().Where(x => x.Id > 0).ToListAsync();
+            }
+        }
+        public async Task DeleteJob(tblJob job)
+        {
+            try
+            {
+                using (await Locker.LockAsync())
+                {
 
-	}
+                    //var entity = await Database.FindAsync<tblEmployee>(id);
+
+                    var res = await Database.DeleteAsync(job);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+    }
 }

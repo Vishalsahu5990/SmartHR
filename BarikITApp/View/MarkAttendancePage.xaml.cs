@@ -15,9 +15,11 @@ namespace BarikITApp
 			InitializeComponent();
 			NavigationPage.SetHasNavigationBar(this, false);
 
-
-
+           
+            if(StaticMethods.IsConnectedToInternet())
 			GetEvents().Wait();
+            else
+				GetJobEventsFromLocalDatabase();  
 
 		}
 		protected override void OnAppearing()
@@ -154,16 +156,26 @@ namespace BarikITApp
 					}).ContinueWith(async
 		t =>
 		{
+                var tblJobs = new List<tblJob>();
 			if (!ReferenceEquals(_listJob, null))
 			{
 				for (int i = 0; i < _listJob.Count; i++)
 				{
-						
+                        tblJobs.Add(new tblJob
+					{
+                            code = _listJob[i].code,
+                            errorcode = _listJob[i].errorcode,
+                            name = _listJob[i].name,
+                            returnvalue = _listJob[i].returnvalue,
+
+					});
+
 					var array = _listJob[i].name.Split(':');
 
 					pickerJob.Items.Add(array[1].ToString());
 
 				}
+                    AddJobsToLocalDatabase(tblJobs);
 			}
 			else
 			{
@@ -175,7 +187,7 @@ namespace BarikITApp
 		}, TaskScheduler.FromCurrentSynchronizationContext()
 				);
 		}
-		private async void AddEventsToLocalDatabase(List<tblEvent> eventsModel)
+        private async Task AddEventsToLocalDatabase(List<tblEvent> eventsModel)
 		{
 			try
 			{
@@ -183,10 +195,11 @@ namespace BarikITApp
 				{ 
 				
 var db = DependencyService.Get<ISQLite>().GetConnection();
+db.DropTable<tblEvent>();
 db.CreateTable<tblEvent>();
 				EventService es = new EventService();
-var listEvents = await es.GetEvents();
-//await es.AddEvents(eventsModel);
+                  
+await es.AddEvents(eventsModel);
 				});
 
 			}
@@ -195,6 +208,70 @@ var listEvents = await es.GetEvents();
 
 			}
 		}
+        private async void AddJobsToLocalDatabase(List<tblJob> jobsModel)
+		{
+			try
+			{
+				Device.BeginInvokeOnMainThread(async () =>
+				{
+
+					var db = DependencyService.Get<ISQLite>().GetConnection();
+                    db.DropTable<tblJob>();
+                    db.CreateTable<tblJob>();
+                    JobService es = new JobService();
+					await es.AddJobs(jobsModel);
+				});
+
+			}
+			catch (Exception ex)
+			{
+
+			}
+		}
+		
+        private async Task GetJobEventsFromLocalDatabase()
+        {
+            try
+            {
+                EventService es = new EventService();
+                var listEvents = await es.GetEvents();
+
+                JobService js = new JobService();
+                var listJobs = await js.GetJobs();
+
+                System.Diagnostics.Debug.WriteLine("Testing"+listEvents.Count.ToString());
+
+                //Filling out Job picker
+				if (!ReferenceEquals(listJobs, null))
+				{
+					for (int i = 0; i < listJobs.Count; i++)
+					{
+                        var array = listJobs[i].name.Split(':');
+
+						pickerJob.Items.Add(array[1].ToString());
+
+					}
+					
+				}
+				//Filling out Event Picker
+                if (!ReferenceEquals(listEvents, null))
+				{
+					for (int i = 0; i < listEvents.Count; i++)
+					{
+						var array = listEvents[i].eventcode.Split(':');
+
+                        pickerEvent.Items.Add(array[1].ToString());
+
+					}
+
+				}
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
 
 	}
 }
