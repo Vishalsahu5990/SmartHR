@@ -7,7 +7,7 @@ namespace BarikITApp
 {
 	public partial class HomePage : ContentPage
 	{
-		List<tblEmployee> empList = null;
+        public static List<tblEmployee> empList = null;
 		public HomePage()
 		{
 			InitializeComponent();
@@ -19,32 +19,33 @@ namespace BarikITApp
 		protected override async void OnAppearing()
 		{
 			base.OnAppearing();
-
+            OnPrepare();
 
 				
 		}
 		protected override void OnDisappearing()
 		{
 			base.OnDisappearing();
-			OnPrepare();
+			
 		}
-		protected async void OnPrepare()
-		{ 
-		
-		try
-			{ 
-				
-var	db = DependencyService.Get<ISQLite>().GetConnection();
-db.CreateTable<tblEmployee>();
-var empModel = new List<EmployeeModel>();
+        protected async void OnPrepare()
+        {
 
-EmployeeService es = new EmployeeService();
-empList = await es.GetEmployees();
-			}
-			catch (Exception ex)
-			{
+            try
+            {
 
-			}}
+                var db = DependencyService.Get<ISQLite>().GetConnection();
+                db.CreateTable<tblEmployee>();
+                var empModel = new List<EmployeeModel>();
+
+                EmployeeService es = new EmployeeService();
+                empList = await es.GetEmployees();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
 		async void markAttendanceTapped(object sender, EventArgs e)
 		{
 			await Navigation.PushAsync(new MarkAttendancePage());

@@ -47,26 +47,21 @@
 				HorizontalOptions="FillAndExpand">
 
 				<Image Source="{Binding Path=profileImageSource}"
-				HeightRequest="130"
-				WidthRequest="130"/>
+				HeightRequest="100"
+				WidthRequest="100"/>
 				<StackLayout HorizontalOptions="FillAndExpand"
 					Spacing="15">
 				<StackLayout Orientation="Horizontal"
 						HorizontalOptions="FillAndExpand"
 						>
-				<Label Text="Name"
+				<Label Text="Name:"
 				FontSize="Small"
 				HorizontalOptions="FillAndExpand"/>
-		 		<Label Text="N/A"
+		 		<Label Text="{Binding Name}"
 				FontSize="Small"
 				HorizontalOptions="FillAndExpand"
 						LineBreakMode="TailTruncation"/>
-						<Label Text="15th march 2017 17:30"
-				FontSize="12"
-							TextColor="Silver"
-				HorizontalOptions="EndAndExpand"
-						LineBreakMode="TailTruncation"
-						VerticalTextAlignment="Center"/>
+
 
 
 
@@ -75,7 +70,7 @@
 				<StackLayout Orientation="Horizontal"
 						HorizontalOptions="FillAndExpand"
 						>
-				<Label Text="Job"
+				<Label Text="Job:"
 				FontSize="Small"
 				HorizontalOptions="Start"
 						VerticalOptions="CenterAndExpand"/>	
@@ -90,7 +85,7 @@
 						LineBreakMode="TailTruncation"
 						VerticalOptions="CenterAndExpand"/>
 						</Frame>
-		 		<Label Text="Evnt"
+		 		<Label Text="Event:"
 				FontSize="Small"
 				HorizontalOptions="Start"
 						LineBreakMode="TailTruncation"
@@ -117,7 +112,7 @@
 						HorizontalOptions="FillAndExpand"
 						>
 				
-		 		<Label Text="Status"
+		 		<Label Text="Date:"
 				FontSize="Small"
 				HorizontalOptions="Start"
 						LineBreakMode="TailTruncation"
@@ -126,7 +121,7 @@
 							OutlineColor="Silver"
 							HorizontalOptions="FillAndExpand"
 							Padding="7">
-							<Label Text="Not Available"
+							<Label Text="{Binding UploadedTime}"
 				FontSize="Small"
 								TextColor="#062653"
 				HorizontalOptions="CenterAndExpand"

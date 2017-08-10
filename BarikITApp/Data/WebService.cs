@@ -117,11 +117,18 @@ namespace BarikITApp
 
 						if (jObj["empid"] != null)
 						{
-							um.userName = jObj["empid"].ToString();
-							var array = um.userName.Split(':');
+                            um.empid = jObj["empid"].ToString();
+                            var array = um.empid.Split(':');
 							if (array != null)
 							{
-								um.userName = array[1];
+                                um.empid = array[1];
+							}
+
+                            um.userName = jObj["empname"].ToString();
+							var arrayUsername = um.userName.Split(':');
+							if (arrayUsername != null)
+							{
+                                um.userName = arrayUsername[1];
 							}
 
 

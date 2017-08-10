@@ -104,10 +104,11 @@ namespace BarikITApp
 					}).ContinueWith(async
 		t =>
 		{
-			if (!string.IsNullOrEmpty(um.userName))
+                if (!string.IsNullOrEmpty(um.empid))
 			{
-				StaticDataModel.UserId = um.userName;
+                    StaticDataModel.UserId = um.empid;
 					CrossSecureStorage.Current.SetValue("UserId", StaticDataModel.UserId);
+                    CrossSecureStorage.Current.SetValue("UserName", um.userName);
 				App.Current.MainPage = new NavigationPage(new HomePage());
 
 			}

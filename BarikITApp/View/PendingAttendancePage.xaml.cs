@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Plugin.SecureStorage;
 using Xamarin.Forms;
 
 namespace BarikITApp
@@ -48,7 +49,7 @@ namespace BarikITApp
 
 				EmployeeService es = new EmployeeService();
 				var empList = await es.GetEmployees();
-
+                var name= CrossSecureStorage.Current.GetValue("UserName", "N/A");
 				if (empList != null)
 				{
 					for (int i = 0; i < empList.Count; i++)
@@ -56,6 +57,7 @@ namespace BarikITApp
 						empModel.Add(new EmployeeModel 
 						{
 							Id=empList[i].Id,
+                            Name=name,
 							GpsLocation=empList[i].GpsLocation,
 							EventCode=empList[i].EventCode,
 							JobCode=empList[i].JobCode,
@@ -64,8 +66,7 @@ namespace BarikITApp
 							ProfileBase64=empList[i].ProfileImage,
 							IsUploaded=false
 							                        
-						});
-
+						}); 
 					}
 					flowlistview.FlowItemsSource = empModel;
 				}
